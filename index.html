@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карьерный навигатор</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app">
+    <section id="mainView">
+      <header class="header">
+        <div>
+          <h1>Карьерный навигатор</h1>
+          <p>Аналитика рынка труда</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Переключить тему">🌙</button>
+      </header>
+
+      <section class="search-panel">
+        <input id="searchInput" type="text" placeholder="Поиск по специальности..." autocomplete="off">
+        <ul id="suggestions" class="suggestions" hidden></ul>
+      </section>
+
+      <section class="quick-stats">
+        <article class="card">
+          <span class="card-title">Общее количество специальностей</span>
+          <strong id="specialitiesCount" class="card-value">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-title">Общее количество вакансий</span>
+          <strong id="vacanciesCount" class="card-value">-</strong>
+        </article>
+      </section>
+
+      <section class="list-section">
+        <h2>Все специальности</h2>
+        <div id="specialitiesGrid" class="specialities-grid"></div>
+      </section>
+    </section>
+
+    <section id="detailView" hidden>
+      <header class="detail-top">
+        <div class="breadcrumbs">
+          <a href="#/">Главная</a> / <span id="detailCrumb">Специальность</span>
+        </div>
+        <button class="theme-toggle" type="button" data-theme-copy aria-label="Переключить тему">🌙</button>
+      </header>
+
+      <button id="backButton" class="secondary-btn" type="button">← Назад</button>
+
+      <h1 id="detailTitle" class="detail-title">-</h1>
+      <p id="detailSubtitle" class="detail-subtitle">Количество проанализированных вакансий: -</p>
+
+      <section class="detail-metrics">
+        <article class="card">
+          <span class="card-title">Всего вакансий</span>
+          <strong id="totalMetric" class="card-value">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-title">Средний опыт</span>
+          <strong id="avgExpMetric" class="card-value">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-title">Средняя зарплата</span>
+          <strong id="avgSalaryMetric" class="card-value">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-title">Диапазон зарплат</span>
+          <strong id="salaryRangeMetric" class="card-value">-</strong>
+        </article>
+      </section>
+
+      <section class="skills-section">
+        <h3>🛠️ Топ-5 профессиональных навыков</h3>
+        <div id="professionalSkills" class="chips"></div>
+      </section>
+
+      <section class="skills-section">
+        <h3>🧠 Топ-5 личностных навыков</h3>
+        <div id="personalSkills" class="chips chips-personal"></div>
+      </section>
+
+      <section class="actions-row">
+        <button id="copySkillsButton" type="button">Копировать навыки</button>
+        <button id="similarButton" class="secondary-btn" type="button">Смотреть похожие специальности</button>
+      </section>
+    </section>
+
+    <section id="statusBox" class="status-box">Загрузка данных...</section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

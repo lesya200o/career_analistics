@@ -1,0 +1,319 @@
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --hover: #f8fafc;
+  --blue: #3b82f6;
+  --teal: #14b8a6;
+  --amber: #d97706;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --card: rgba(30, 41, 59, 0.6);
+  --border: rgba(71, 85, 105, 0.4);
+  --input: #111827;
+  --hover: #1e293b;
+  --blue: #60a5fa;
+  --teal: #2dd4bf;
+  --amber: #f59e0b;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.app {
+  width: min(1180px, 100% - 2.25rem);
+  margin: 1.25rem auto 2.2rem;
+}
+
+.header, .detail-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.header h1, .detail-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 1.6rem + 1vw, 2.5rem);
+  font-weight: 800;
+}
+
+.header p, .detail-subtitle, .breadcrumbs {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+}
+
+.search-panel {
+  margin-top: 1rem;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.95rem 1rem;
+  background: var(--input);
+  color: var(--text);
+  font: inherit;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.suggestions li {
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+}
+
+.suggestions li:hover { background: var(--hover); }
+.suggestions li + li { border-top: 1px solid var(--border); }
+
+.quick-stats, .detail-metrics {
+  margin-top: 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.1rem;
+  padding: 1rem 0.95rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.card-title {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.card-value {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: clamp(1.8rem, 1.3rem + 1vw, 2.15rem);
+  color: var(--amber);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.list-section { margin-top: 1.55rem; }
+.list-section h2 { margin: 0 0 0.9rem; }
+
+.specialities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.95rem;
+}
+
+.speciality-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.1rem;
+  padding: 1rem 1rem 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.speciality-card:hover {
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+  box-shadow: 0 16px 30px rgba(59, 130, 246, 0.14);
+}
+
+body.dark .speciality-card:hover {
+  border-color: #64748b;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.4);
+}
+
+.speciality-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.speciality-head-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.speciality-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.55rem;
+  background: #ede9fe;
+}
+
+body.dark .speciality-icon {
+  background: rgba(139, 92, 246, 0.22);
+}
+
+.speciality-name {
+  margin: 0;
+  font-size: 1.22rem;
+  font-weight: 700;
+}
+
+.salary-pill {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #b45309;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+body.dark .salary-pill {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+}
+
+.speciality-subtitle {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 0.33rem 0.62rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.88rem;
+}
+
+.chips-personal .chip {
+  background: #ecfeff;
+  color: #0f766e;
+}
+
+body.dark .chip {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+body.dark .chips-personal .chip {
+  background: rgba(20, 184, 166, 0.2);
+  color: #5eead4;
+}
+
+.skills-section { margin-top: 1.2rem; }
+.skills-section h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+}
+
+.actions-row {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.62rem 1rem;
+  font: inherit;
+  cursor: pointer;
+  background: var(--blue);
+  color: #fff;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+button:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+body.dark .secondary-btn {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+.status-box {
+  margin-top: 1rem;
+  padding: 0.72rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  color: var(--muted);
+  background: var(--card);
+  font-size: 0.92rem;
+}
+
+.breadcrumbs a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .app {
+    width: calc(100% - 1rem);
+    margin: 0.6rem auto 1.2rem;
+  }
+  .header h1, .detail-title { font-size: 1.8rem; }
+  .card-value { font-size: 1.5rem; }
+  .skills-section h3 { font-size: 1.25rem; }
+  .actions-row button { width: 100%; }
+}
