@@ -6,8 +6,8 @@ $CONFIG = [
     'per_page' => 25,
     'log_file' => __DIR__ . '/hh_parser.log',
     'debug' => true,
-    'client_id' => "UII3IF3H4RK0T32H9HOQ76QM3E1F0C2NDLBTFTGENMLFVF3UCGJ38GB4PHFO27CT",
-    'client_secret' => "QLH0JB9K6OK3TFKEP8UH8743DRL4QSJO7R5AUS51P813SI7NG914R3BOV074ODKP"
+    'client_id' => " ",
+    'client_secret' => " "
 ];
 
 class Logger {
@@ -351,9 +351,7 @@ function save_to_json(array $results, array $statistics, string $search_query, i
 }
 
 function get_vacancies(array $config, Logger $logger): void {
-    echo "\n" . str_repeat("=", 70) . "\n";
     echo "ПАРСЕР ВАКАНСИЙ HH.RU\n";
-    echo str_repeat("=", 70) . "\n\n";
     
     echo "Введите название вакансии для поиска: ";
     $search_query = trim(fgets(STDIN));
@@ -437,7 +435,6 @@ function get_vacancies(array $config, Logger $logger): void {
     $results = [];
     
     echo "\nОбработка вакансий...\n";
-    echo str_repeat("-", 70) . "\n";
     
     foreach ($vacancies as $item) {
         $result = get_vacancy_details($item, $auth, $logger);
@@ -480,7 +477,6 @@ function get_vacancies(array $config, Logger $logger): void {
     ];
     
     echo "\nСТАТИСТИКА:\n";
-    echo str_repeat("-", 70) . "\n";
     echo sprintf("%-25s: %d\n", "Всего вакансий", $statistics['total']);
     echo sprintf("%-25s: %.1f лет\n", "Средний опыт", $statistics['avg_experience']);
     echo sprintf("%-25s: %s ₽\n", "Средняя зарплата", number_format($statistics['avg_salary'], 0, '', ' '));
@@ -495,7 +491,6 @@ function get_vacancies(array $config, Logger $logger): void {
     $json_file = save_to_json($results, $statistics, $search_query, $config['region_id'], $config['region_name'], $base . ".json");
     
     echo "\nРЕЗУЛЬТАТЫ СОХРАНЕНЫ:\n";
-    echo str_repeat("-", 70) . "\n";
     echo "JSON данные: {$json_file}\n";
     
     $logger->info("Результаты сохранены: {$json_file}");
@@ -517,7 +512,5 @@ try {
     }
 }
 
-echo "\n" . str_repeat("=", 70) . "\n";
 echo "РАБОТА ЗАВЕРШЕНА\n";
-echo str_repeat("=", 70) . "\n";
 ?>
