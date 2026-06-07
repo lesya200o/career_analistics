@@ -105,7 +105,7 @@ class HHAuth {
         
         $headers = [
             "Content-Type: application/x-www-form-urlencoded",
-            "User-Agent: MyResearchApp/1.0 (forspam.lesa2006@gmail.com)"
+            "User-Agent: MyResearchApp/1.0 (exemple@gmail.com)"
         ];
         
         $this->http->reset();
@@ -149,7 +149,7 @@ class HHAuth {
     
     public function getAuthHeaders(): array {
         $headers = [
-            "User-Agent: MyResearchApp/1.0 (forspam.lesa2006@gmail.com)",
+            "User-Agent: MyResearchApp/1.0 (exemple@gmail.com)",
             "Accept: application/json"
         ];
         
