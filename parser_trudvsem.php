@@ -1,7 +1,5 @@
 <?php
-// ============================================
-// КОНФИГУРАЦИЯ
-// ============================================
+
 $CONFIG = [
     'search_query' => "",
     'region_code' => "6100000000000",
@@ -10,9 +8,6 @@ $CONFIG = [
     'debug' => true
 ];
 
-// ============================================
-// КЛАСС ЛОГГЕРА
-// ============================================
 class Logger {
     private string $logFile;
     private bool $debug;
@@ -47,9 +42,6 @@ class Logger {
     }
 }
 
-// ============================================
-// КЛАСС ДЛЯ РАБОТЫ С CURL
-// ============================================
 class HttpClient {
     private ?\CurlHandle $handle = null;
     
@@ -84,9 +76,6 @@ class HttpClient {
     }
 }
 
-// ============================================
-// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-// ============================================
 
 function clean_html(?string $text): string {
     if (empty($text)) return "";
@@ -110,9 +99,6 @@ function format_salary_amount($amount): string {
     return number_format((float)$amount, 0, '', ' ');
 }
 
-// ============================================
-// ФУНКЦИИ РАБОТЫ С ВАКАНСИЯМИ
-// ============================================
 
 function get_vacancy_details(array $vacancy, Logger $logger): ?array {
     try {
@@ -170,7 +156,7 @@ function get_vacancy_details(array $vacancy, Logger $logger): ?array {
             }
         }
         
-        // 2. ИЗ ОПИСАНИЯ ВАКАНСИИ 
+        // 2. Из описания 
         if (!empty($description)) {
             $skill_patterns = [
                 '/знание\s+([^,.!;]+)/iu',
@@ -201,7 +187,7 @@ function get_vacancy_details(array $vacancy, Logger $logger): ?array {
             }
         }
         
-        // 3. ИЗ ТРЕБОВАНИЙ
+        // 3. Из требований
         $requirement_fields = ['qualification', 'requirements', 'requirement'];
         foreach ($requirement_fields as $field) {
             if (!empty($vacancy_data[$field])) {
@@ -309,9 +295,6 @@ function calculate_average_salary(array $vacancies): int {
     return !empty($salaries) ? intval(round(array_sum($salaries) / count($salaries))) : 0;
 }
 
-// ============================================
-// ФУНКЦИЯ СОХРАНЕНИЯ В JSON
-// ============================================
 function save_to_json(array $results, array $statistics, string $search_query, string $filename): string {
     $data = [
         "metadata" => [
@@ -330,14 +313,10 @@ function save_to_json(array $results, array $statistics, string $search_query, s
     return $filename;
 }
 
-// ============================================
-// ОСНОВНАЯ ФУНКЦИЯ
-// ============================================
+
 
 function get_vacancies(array $config, Logger $logger): void {
-    echo "\n" . str_repeat("=", 70) . "\n";
-    echo "ПАРСЕР ВАКАНСИЙ TRUDVSEM.RU (v3.0 PHP 8.5+)\n";
-    echo str_repeat("=", 70) . "\n\n";
+    echo "ПАРСЕР ВАКАНСИЙ TRUDVSEM.RU\n";
     
     echo "Введите название вакансии для поиска: ";
     $search_query = trim(fgets(STDIN));
@@ -405,7 +384,6 @@ function get_vacancies(array $config, Logger $logger): void {
     $search_lower = mb_strtolower(trim($search_query));
     
     echo "\nФильтрация и обработка...\n";
-    echo str_repeat("-", 70) . "\n";
     
     foreach ($vacancies as $item) {
         $vacancy_data = $item['vacancy'] ?? $item;
@@ -489,7 +467,5 @@ try {
     }
 }
 
-echo "\n" . str_repeat("=", 70) . "\n";
-echo "🏁 РАБОТА ЗАВЕРШЕНА\n";
-echo str_repeat("=", 70) . "\n";
+echo "РАБОТА ЗАВЕРШЕНА\n";
 ?>
